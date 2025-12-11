@@ -10,24 +10,12 @@ A fully working Packet Tracer lab that demonstrates:
 - Inter-VLAN routing using subinterfaces (Router-on-a-Stick)
 - Real-world packet flow with VLAN tagging
 
-### Networks
-| VLAN | Name   | Subnet              | Gateway       | Hosts                              |
-|------|--------|---------------------|---------------|------------------------------------|
-| 13   | DATA   | 10.0.0.0 /25        | 10.0.0.1      | PC1 (10.0.0.2), PC3 (10.0.0.131)  |
-| 24   | GUEST  | 10.0.1.0 /25        | 10.0.1.1      | PC2 (10.0.1.130), PC4 (10.0.1.131)|
 
 ## Learning Objectives
 - Understand how 802.1Q tags are added/removed on trunks
 - Configure access ports vs trunk ports correctly
 - Implement inter-VLAN routing without a Layer 3 switch
 - Verify traffic isolation and routing behavior
-
-## Devices (Packet Tracer)
-- 1 × Cisco 2911 Router (R1)
-- 2 × Cisco 2960-24TT Switches (SW1, SW2)
-- 4 × PCs with static IPs
-
-## Configuration (Copy-Paste Ready)
 
 ### SW1 – Access Ports + Trunk
 ```
@@ -72,9 +60,10 @@ interface GigabitEthernet0/1
  switchport mode trunk
  switchport trunk allowed vlan 13,24
 ```
-```
+
 R1 – Router-on-a-Stick (no switchport commands!)
-ciscointerface GigabitEthernet0/0
+```
+interface GigabitEthernet0/0
  no shutdown
  description Trunk to SW1
 !
